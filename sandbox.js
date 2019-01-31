@@ -31,3 +31,27 @@ signInOptions: [
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // The start method will wait until the DOM is loaded.
 ui.start('#firebaseui-auth-container', uiConfig);
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+    } else {
+        // No user is signed in.
+    }
+});
+
+var user = firebase.auth().currentUser;
+var name, email, uid, emailVerified;
+
+if (user != null) {
+  name = user.displayName;
+  email = user.email;
+}
+
+if (user != null) {
+  user.providerData.forEach(function (profile) {
+    console.log("Sign-in provider: " + profile.providerId);
+    console.log("Name: " + profile.displayName);
+    console.log("Email: " + profile.email);
+  });
+}
