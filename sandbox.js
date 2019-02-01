@@ -48,7 +48,7 @@ $(document).ready(function() {
     });
 
     //sign up function
-    $("#sign-up").on("click", function(event) {
+    $("#sign-up").submit(function(event) {
         event.preventDefault();
         var email = $("#EMSUP").val();
         var password = $("PWSUP").val();
@@ -59,7 +59,7 @@ $(document).ready(function() {
     });
 
     //sign in function
-    $("#sign-in").on("click", function(event) {
+    $("#sign-in").submit(function(event) {
         event.preventDefault();
         var email = $("#EMSIN").val();
         var password = $("#PWSIN").val();
