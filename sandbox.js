@@ -32,16 +32,19 @@ signInOptions: [
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // The start method will wait until the DOM is loaded.
 ui.start('#firebaseui-auth-container', uiConfig);
+var user = firebase.auth().currentUser;
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+        var displayName = user.displayName;
+        var providerData = user.providerData;
+        var isAnonymous = user.isAnonymous;
         // User is signed in.
     } else {
         // No user is signed in.
     }
 });
 
-var user = firebase.auth().currentUser;
 var name, email, uid, emailVerified;
 
 if (user != null) {
