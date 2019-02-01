@@ -51,11 +51,13 @@ $(document).ready(function() {
     $("#sign-up").submit(function(event) {
         event.preventDefault();
         var email = $("#EMSUP").val();
-        var password = $("PWSUP").val();
+        var password = $("#PWSUP").val();
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .catch(function (error) {
             alert("Signup unsuccesful. Error Code: " + error)
-        });    
+        });
+        $("#EMSUP").val("");
+        $("#PWSUP").val("");
     });
 
     //sign in function
@@ -69,6 +71,9 @@ $(document).ready(function() {
         }).catch(function(error) {
             alert("Sign-in unsuccesful. Error Code: " + error)
         });
+        $("#EMSIN").val("");
+        $("#PWSIN").val("");
+
     });
 
     //signout function
