@@ -52,7 +52,7 @@ $(document).ready(function() {
         event.preventDefault();
         var email = $("#EMSUP").val();
         var password = $("PWSUP").val();
-        firebase.auth().creatUserWithEmailAndPassword(email, password)
+        firebase.auth().createUserWithEmailAndPassword(email, password)
         .catch(function (error) {
             alert("Signup unsuccesful. Error Code: " + error)
         });    
