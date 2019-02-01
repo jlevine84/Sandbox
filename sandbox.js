@@ -9,23 +9,31 @@ var config = {
 firebase.initializeApp(config);
 database = firebase.database();
 
-// FirebaseUI config.
+
+
+//Firebase ui config
 var uiConfig = {
-signInSuccessUrl: 'https://jlevine84.github.io/Sandbox/test.html',
-signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-],
-// tosUrl and privacyPolicyUrl accept either url string or a callback
-// function.
-// Terms of service url/callback.
-// tosUrl: '<your-tos-url>',
-// Privacy policy url/callback.
-// privacyPolicyUrl: function() {
-//     window.location.assign('<your-privacy-policy-url>');
-// }
+    callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        // User successfully signed in.
+        // Return type determines whether we continue the redirect automatically
+        // or whether we leave that to developer to handle.
+        return true;
+        },
+        uiShown: function() {
+        // The widget is rendered.
+        // Hide the loader.
+        document.getElementById('loader').style.display = 'none';
+        }
+    },
+    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+    signInFlow: 'popup',
+    signInSuccessUrl: "https://jlevine84.github.io/Sandbox/test.html",
+    signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ]
 };
 
 // Initialize the FirebaseUI Widget using Firebase.
@@ -44,6 +52,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         // No user is signed in.
     }
 });
+
 
 var name, email, uid, emailVerified;
 
