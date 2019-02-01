@@ -50,8 +50,8 @@ $(document).ready(function() {
     //sign up function
     $("#sign-up").on("click", function(event) {
         event.preventDefault();
-        var email = $("#EMSUP").val().trim();
-        var password = $("PWSUP").val().trim();
+        var email = $("#EMSUP").val();
+        var password = $("PWSUP").val();
         firebase.auth().creatUserWithEmailAndPassword(email, password)
         .catch(function (error) {
             alert("Signup unsuccesful. Error Code: " + error)
@@ -61,8 +61,8 @@ $(document).ready(function() {
     //sign in function
     $("#sign-in").on("click", function(event) {
         event.preventDefault();
-        var email = $("#EMSIN").val().trim();
-        var password = $("#PWSIN").val().trim();
+        var email = $("#EMSIN").val();
+        var password = $("#PWSIN").val();
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(function () {
             return firebase.auth().signInWithEmailAndPassword(email, password);
