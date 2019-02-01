@@ -25,16 +25,19 @@ $(document).ready(function() {
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
-    var user = firebase.auth().currentUser;
+    
     
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
            console.log("User Signed In")
             // User is signed in.
-            $("#doodad").text("You are signed in!")
+            var user = firebase.auth().currentUser;
+            $("#doodad").text("Welcome " + user.displayName + ". You are signed in!")
+            
         } else {
             // No user is signed in.
             $("#doodad").text("Derp!")
+
         }
     });
 
