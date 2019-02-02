@@ -10,21 +10,26 @@ $(document).ready(function() {
     firebase.initializeApp(config);
     database = firebase.database();
 
-    //Firebase ui config
-    var uiConfig = {
-        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-        signInFlow: 'popup',
-        signInSuccessUrl: "https://jlevine84.github.io/Sandbox/",
-        signInOptions: [
-            // Leave the lines as is for the providers you want to offer your users.
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        ]
-    };
+    // //Firebase ui config
+    // var uiConfig = {
+    //     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+    //     signInFlow: 'popup',
+    //     signInSuccessUrl: "https://jlevine84.github.io/Sandbox/",
+    //     signInOptions: [
+    //         // Leave the lines as is for the providers you want to offer your users.
+    //         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    //     ]
+    // };
 
-    // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
+
+    $('.dropdown-toggle').on("click", function() {
+        $('.dropdown-toggle').dropdown()
+    })
+
+    // // Initialize the FirebaseUI Widget using Firebase.
+    // var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    // // The start method will wait until the DOM is loaded.
+    // ui.start('#firebaseui-auth-container', uiConfig);
 
     
     //Checks online/offline status and displays the UI accordingly
@@ -36,6 +41,7 @@ $(document).ready(function() {
             var user = firebase.auth().currentUser;
             $("#doodad").text("Welcome " + user.displayName + ". You are signed by: " + user.PROVIDER_ID)
             //Client's data goes here.
+
 
             
         } else {
@@ -52,6 +58,7 @@ $(document).ready(function() {
         event.preventDefault();
         var email = $("#EMSUP").val();
         var password = $("#PWSUP").val();
+
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .catch(function (error) {
             alert("Signup unsuccesful. Error Code: " + error)
