@@ -10,26 +10,26 @@ $(document).ready(function() {
     firebase.initializeApp(config);
     database = firebase.database();
 
-    // //Firebase ui config
-    // var uiConfig = {
-    //     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    //     signInFlow: 'popup',
-    //     signInSuccessUrl: "https://jlevine84.github.io/Sandbox/",
-    //     signInOptions: [
-    //         // Leave the lines as is for the providers you want to offer your users.
-    //         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    //     ]
-    // };
+    //Firebase ui config
+    var uiConfig = {
+        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        signInFlow: 'popup',
+        signInSuccessUrl: "https://jlevine84.github.io/Sandbox/",
+        signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        ]
+    };
 
 
     $('.dropdown-toggle').on("click", function() {
         $('.dropdown-toggle').dropdown()
     })
 
-    // // Initialize the FirebaseUI Widget using Firebase.
-    // var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // // The start method will wait until the DOM is loaded.
-    // ui.start('#firebaseui-auth-container', uiConfig);
+    // Initialize the FirebaseUI Widget using Firebase.
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
 
     
     //Checks online/offline status and displays the UI accordingly
