@@ -39,14 +39,17 @@ $(document).ready(function() {
             // User is signed in.
             //Change Login UI to sign out
             var user = firebase.auth().currentUser;
+            $("#logout").show();
             $("#doodad").text("Welcome " + user.displayName + ". You are signed by: " + user.PROVIDER_ID)
+
             //Client's data goes here.
 
 
             
         } else {
             // No user is signed in.
-            $("#doodad").text("Derp!")
+            $("#logout").hide();
+            $("#doodad").text("Derp!");
             //Display public data when no user is signed in or signs out.
             
 
